@@ -235,6 +235,104 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/08/test1/" itemprop="url">
+                  小毛驴
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-08T18:04:59+08:00" content="2016-08-08">
+              2016-08-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>歌曲：</p>
+<blockquote>
+<p>我有一只小毛驴我从来也不骑<br>有一天我心血来潮骑着去赶集</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询用户所在部门需填报直报列表Action  </div><div class="line"> */  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showDepartmentForms</span><span class="params">()</span> </span>&#123;</div><div class="line">		user = <span class="keyword">this</span>.getSessionAttr(<span class="string">"user"</span>);</div><div class="line">		directService = <span class="keyword">new</span> DirectService();</div><div class="line">		<span class="comment">/*</span></div><div class="line">		 * List&lt;Long&gt; deptFormIDs = directService.getPersonOrDeptFormIDs(</div><div class="line">		 * user.getDeptid(), 2);</div><div class="line">		 */</div><div class="line">		List&lt;SelfFormTemplate&gt; deptTemplates = directService</div><div class="line">				.getPersonOrDeptTemplates(user.getDeptid(), <span class="number">2</span>);</div><div class="line">		List&lt;Record&gt; departmentForms = <span class="keyword">new</span> ArrayList&lt;Record&gt;();</div><div class="line">		<span class="keyword">for</span> (SelfFormTemplate template : deptTemplates) &#123;</div><div class="line">			<span class="comment">// SelfFormTemplate formTemplate = SelfFormTemplate.dao</span></div><div class="line">			<span class="comment">// .findByIdLoadColumns(formid, "id,name,cycle,checknum");</span></div><div class="line">			List&lt;Record&gt; deptFromRecords = directService</div><div class="line">					.getPersonOrDeptFormRecords(template.getId(),</div><div class="line">							user.getDeptid(), <span class="number">2</span>);</div><div class="line">			<span class="keyword">for</span> (Record record : deptFromRecords) &#123;</div><div class="line">				<span class="keyword">if</span> (record.getInt(<span class="string">"state"</span>) &gt; template.getChecknum()) &#123;</div><div class="line">					<span class="keyword">continue</span>;</div><div class="line">				&#125;</div><div class="line">				Boolean isFill = directService.checkIsFill(user.getId(),</div><div class="line">						record.getLong(<span class="string">"fillid"</span>));</div><div class="line">				<span class="keyword">if</span> (record.getInt(<span class="string">"state"</span>) != <span class="number">0</span> &amp;&amp; !isFill) &#123;</div><div class="line">					<span class="keyword">continue</span>;</div><div class="line">				&#125;</div><div class="line">				Record deptForm = <span class="keyword">new</span> Record();</div><div class="line">				deptForm.setColumns(template);</div><div class="line">				deptForm.set(<span class="string">"formid"</span>, deptForm.get(<span class="string">"id"</span>));</div><div class="line">				deptForm.remove(<span class="string">"id"</span>);</div><div class="line">				deptForm.set(<span class="string">"fillname"</span>, directService</div><div class="line">						.getFillNameWithFillid(record.getLong(<span class="string">"fillid"</span>)));</div><div class="line">				deptForm.setColumns(record);</div><div class="line">				departmentForms.add(deptForm);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">this</span>.setAttr(<span class="string">"deptForms"</span>, departmentForms);</div><div class="line">		<span class="keyword">this</span>.render(<span class="string">"show_department_forms.jsp"</span>);</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/08/test/" itemprop="url">
                   小毛驴
                 </a>
@@ -455,7 +553,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
